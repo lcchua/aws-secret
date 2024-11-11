@@ -30,9 +30,9 @@ jobs:
           secret_object=$(aws secretsmanager get-secret-value --secret-id prod/hello_app/secret_keys --query SecretString --output json)
 
           # Parse specific keys from the secret object
-          secret_value_key1=$(echo "$secret_object" | jq -r '. | fromjson | .lcchua-key1')
-          secret_value_key2=$(echo "$secret_object" | jq -r '. | fromjson | .lcchua-key2')
-          secret_value_key3=$(echo "$secret_object" | jq -r '. | fromjson | .lcchua-key3')
+          secret_value_key1=$(echo "$secret_object" | jq -r '. | fromjson | ."lcchua-key1"')
+          secret_value_key2=$(echo "$secret_object" | jq -r '. | fromjson | ."lcchua-key2"')
+          secret_value_key3=$(echo "$secret_object" | jq -r '. | fromjson | ."lcchua-key3"')
 
           echo "Secret value Key1 is: $secret_value_key1"
           echo "Secret value Key2 is: $secret_value_key2"
